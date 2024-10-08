@@ -55,6 +55,11 @@ const Dashboard = () => {
     setLoading(false);
   };
 
+  const deletePost = (postId) => {
+    setPosts(posts.filter(post => post.id !== postId));
+    comments.length = 0;
+  };
+
   // Fetch Comments for the Created Post
   const fetchComments = async (post) => {
     setLoading(true);
@@ -124,6 +129,13 @@ const Dashboard = () => {
                 onClick={() => fetchComments(post)}
               >
                 Fetch Comments
+              </button>
+              <br></br>
+              <button 
+                className="text-red-500 underline"
+                onClick={() => deletePost(post.id)}
+              >
+                Delete Post
               </button>
             </div>
           ))}
