@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# API Chaining Web Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a React-based web application that demonstrates API chaining with GET and POST requests. It allows users to create posts, fetch comments, and delete posts using mock APIs.
 
-## Available Scripts
+# Features
 
-In the project directory, you can run:
+# API Chaining:
+Fetch user data, create posts, and fetch comments for specific posts.
 
-### `npm start`
+# Delete Posts:
+Allows deleting specific posts based on unique IDs.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Responsive Design:
+Built with Tailwind CSS.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Error Handling & Loading States:
+Displays error messages and loading states for better UX.
 
-### `npm test`
+# Technology Stack
+React.js
+Axios for HTTP requests
+Tailwind CSS for styling
+uuid for generating unique IDs
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Setup Instructions
 
-### `npm run build`
+# Clone the repository:
+bash ```
+git clone https://github.com/your-username/api-chaining.git ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Navigate into the project directory:
+bash ```
+cd api-chaining-app ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Install dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+bash ```
+npm install ```
 
-### `npm run eject`
+# Start the application:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+bash ```
+npm start ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# How to Use
+- Select User: Choose a user from the dropdown.
+- Create Post: Enter a title and body for the post, then click "Create Post."
+- Fetch Comments: Click "Fetch Comments" for any post to load comments related to that post.
+- Delete Post: Click "Delete" to remove a specific post.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  
+# API Endpoints Used
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Get Users: GET https://jsonplaceholder.typicode.com/users
+- Create Post: POST https://jsonplaceholder.typicode.com/posts
+- Get Comments: GET https://jsonplaceholder.typicode.com/comments?postId={postId}
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Assumptions & Decisions
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+A unique ID is generated for each post using the uuid package.
+Users can create posts and fetch comments, but all posts are local to the session and are not persisted on the server.
+The design is kept simple and responsive for ease of use.
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Known Issues
+Posts and comments are fetched from a mock API; data is not persistent across sessions.
 
-### Analyzing the Bundle Size
+# Deployment
+The project is deployed using Vercel. Access it here.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+api-chaining-do8oqvffh-poojasreeyarravarapus-projects.vercel.app
 
-### Making a Progressive Web App
+# License
+This project is licensed under the MIT License.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
