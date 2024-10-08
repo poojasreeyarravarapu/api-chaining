@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 const Dashboard = () => {
   const [comments, setComments] = useState([]);
@@ -26,12 +27,13 @@ const Dashboard = () => {
   }, []);
 
   // Create Post
+  
   const createPost = async () => {
     if (!selectedUser) {
       setError('Please select a user first.');
       return;
     }
-
+  
     setLoading(true);
     setError('');
     try {
@@ -40,14 +42,16 @@ const Dashboard = () => {
         body,
         userId: selectedUser,
       });
-
-      const createdPost = response.data;
-      const user = users.find((user) => user.id === parseInt(selectedUser)); // Parse to integer
-      createdPost.userName = user ? user.name : 'Unknown User'; // Set username
-
-      setPosts([...posts, createdPost]); // Add new post to the posts array
-      setTitle(''); // Clear title input
-      setBody(''); // Clear body input
+  
+      const createdPost = {
+        ...response.data,
+        id: uuidv4(), // Generate a unique ID for the post
+        userName: users.find(user => user.id === parseInt(selectedUser))?.name || 'Unknown User',
+      };
+  
+      setPosts([...posts, createdPost]); // Add the new post with a unique ID
+      setTitle('');
+      setBody('');
     } catch (err) {
       setError('Failed to create post');
       console.error(err);
@@ -55,10 +59,12 @@ const Dashboard = () => {
     setLoading(false);
   };
 
-  const deletePost = (postId) => {
-    setPosts(posts.filter(post => post.id !== postId));
+  const deletePost = (uniqueId) => {
+    const updatedPosts = posts.filter(post => post.id !== uniqueId);
+    setPosts(updatedPosts);
     comments.length = 0;
   };
+  
 
   // Fetch Comments for the Created Post
   const fetchComments = async (post) => {
@@ -120,7 +126,7 @@ const Dashboard = () => {
         <div className="mt-6">
           <h2 className="text-xl font-bold mb-4 text-blue-600">Posts</h2>
           {posts.map((post) => (
-            <div key={post.id} className="border-b border-gray-200 py-4">
+            <div key={post.userId} className="border-b border-gray-200 py-4">
               <h3 className="text-lg font-bold text-gray-800">{post.title}</h3>
               <p className="text-gray-600">{post.body}</p>
               <p className="text-sm text-gray-500">Posted by: {post.userName}</p>
